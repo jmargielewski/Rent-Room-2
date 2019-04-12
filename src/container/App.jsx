@@ -1,11 +1,10 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Navbar from '../components/Navbar/Navbar';
 
 export default function App() {
   return (
     <div>
-      <FontAwesomeIcon icon="check-square" />
-      <FontAwesomeIcon icon="coffee" />
+      <Navbar />
     </div>
   );
 }

@@ -2,10 +2,12 @@ import React from 'react';
 import { render } from 'react-dom';
 import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import Root from './Root';
-import App from './container/App';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './redux/configureStore';
+import Root from './Root';
+import App from './container/App';
+
+import GlobalStyle from './styles/global-styles';
 
 library.add(faCheckSquare, faCoffee);
 
@@ -14,6 +16,7 @@ const store = configureStore();
 render(
   <Root store={store}>
     <App />
+    <GlobalStyle />
   </Root>,
   document.getElementById('root'),
 );
