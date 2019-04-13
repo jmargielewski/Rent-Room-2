@@ -1,1 +1,1 @@
-export * from './initActions';
+export * from './apartmentsActions';

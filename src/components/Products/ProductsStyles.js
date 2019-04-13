@@ -24,7 +24,7 @@ const ProductsCenter = styled.div`
   grid-row-gap: 2rem;
 `;
 
-const Product = styled.article`
+const ProductItem = styled.article`
   h3 {
     text-transform: capitalize;
     font-size: 1.1rem;
@@ -83,7 +83,7 @@ export {
   Products,
   SectionTitle,
   ProductsCenter,
-  Product,
+  ProductItem,
   ProductImage,
   BagBtn,
   ImageContainer,

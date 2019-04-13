@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import initReducer from './initReducer';
+import apartmentsReducer from './apartmentsReducer';
 
 const reducer = combineReducers({
-  init: initReducer,
+  apartments: apartmentsReducer,
 });
 
 export default reducer;
