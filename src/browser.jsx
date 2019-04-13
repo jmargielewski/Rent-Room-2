@@ -1,7 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBars,
+  faShoppingCart,
+  faWindowClose,
+  faChevronUp,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './redux/configureStore';
 import Root from './Root';
@@ -9,7 +15,7 @@ import App from './container/App';
 
 import GlobalStyle from './styles/global-styles';
 
-library.add(faBars, faShoppingCart);
+library.add(faBars, faShoppingCart, faWindowClose, faChevronUp, faChevronDown);
 
 const store = configureStore();
 

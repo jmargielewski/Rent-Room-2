@@ -23,22 +23,4 @@ const BannerTitle = styled.h1`
   margin-bottom: 3rem;
 `;
 
-const BanerBtn = styled.button`
-  padding: 1rem 3rem;
-  text-transform: uppercase;
-  letter-spacing: var(--mainSpacing);
-  font-size: 1rem;
-  background: var(--primaryColor);
-  color: var(--mainBlack);
-  border: 1px solid var(--primaryColor);
-  transition: var(--mainTransition);
-  cursor: pointer;
-  &:hover {
-    background: transparent;
-    color: var(--primaryColor);
-  }
-`;
-
-export {
- Hero, Banner, BannerTitle, BanerBtn 
-};
+export { Hero, Banner, BannerTitle };
