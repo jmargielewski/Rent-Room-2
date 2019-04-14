@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getApartments, getIsFetching, getErrorMessage } from '../../selectors';
+import {
+  getApartments,
+  getIsFetching,
+  getErrorMessage,
+} from '../../redux/selectors';
 import * as actions from '../../redux/actions';
 import {
   Products,
@@ -21,19 +25,23 @@ class Product extends Component {
     fetchApartments();
   }
 
+  onClick = (id) => {
+    console.log('item', id);
+  };
+
   renderItem() {
     const { apartments } = this.props;
-    return apartments.map(apartment => (
-      <ProductItem key={apartment.id}>
+    return apartments.map(({ id, title, price }) => (
+      <ProductItem key={id}>
         <ImageContainer>
           <ProductImage src={flat1} alt="apartment1" />
-          <BagBtn>
+          <BagBtn onClick={() => this.onClick(id)}>
             <FontAwesomeIcon icon="shopping-cart" />
             add to bag
           </BagBtn>
         </ImageContainer>
-        <h3>{apartment.title}</h3>
-        <h4>{apartment.price}</h4>
+        <h3>{title}</h3>
+        <h4>{price}</h4>
       </ProductItem>
     ));
   }
@@ -50,10 +58,10 @@ class Product extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  apartments: getApartments(state),
-  isFetching: getIsFetching(state),
-  errorMessage: getErrorMessage(state),
+const mapStateToProps = ({ apartmentsReducer }) => ({
+  apartments: getApartments(apartmentsReducer),
+  isFetching: getIsFetching(apartmentsReducer),
+  errorMessage: getErrorMessage(apartmentsReducer),
 });
 
 export default connect(
