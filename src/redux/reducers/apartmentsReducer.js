@@ -6,7 +6,10 @@ import {
 
 export const INITIAL_STATE = {
   loading: false,
-  data: null,
+  apartments: {
+    byId: null,
+    allIds: [],
+  },
   errorMessage: '',
 };
 
@@ -15,7 +18,7 @@ const apartmentsReducer = (state = INITIAL_STATE, action) => {
     case FETCH_APARTMENTS_REQUEST:
       return { ...state, loading: true };
     case FETCH_APARTMENTS_SUCCESS:
-      return { ...state, loading: false, data: action.payload };
+      return { ...state, loading: false, apartments: action.payload };
     case FETCH_APARTMENTS_FAILURE:
       return { ...state, loading: false, errorMessage: action.payload };
     default:

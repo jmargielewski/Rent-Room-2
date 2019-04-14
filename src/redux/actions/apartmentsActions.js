@@ -4,10 +4,11 @@ import {
   FETCH_APARTMENTS_FAILURE,
 } from './types';
 import api from '../../api/api';
+import { formateApartmentsEntity } from '../../normalizr/normalizr';
 
 const fetchApartmentsSuccess = response => ({
   type: FETCH_APARTMENTS_SUCCESS,
-  payload: response,
+  payload: formateApartmentsEntity(response),
 });
 
 const fetchApartmentsFailure = err => ({
