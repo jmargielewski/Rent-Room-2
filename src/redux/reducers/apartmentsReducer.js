@@ -5,7 +5,7 @@ import {
 } from '../actions/types';
 
 export const INITIAL_STATE = {
-  loading: false,
+  isFetching: false,
   apartments: {
     byId: null,
     allIds: [],
@@ -16,11 +16,11 @@ export const INITIAL_STATE = {
 const apartmentsReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_APARTMENTS_REQUEST:
-      return { ...state, loading: true };
+      return { ...state, isFetching: true };
     case FETCH_APARTMENTS_SUCCESS:
-      return { ...state, loading: false, apartments: action.payload };
+      return { ...state, isFetching: false, apartments: action.payload };
     case FETCH_APARTMENTS_FAILURE:
-      return { ...state, loading: false, errorMessage: action.payload };
+      return { ...state, isFetching: false, errorMessage: action.payload };
     default:
       return state;
   }

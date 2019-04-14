@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getApartments, getIsFetching, getErrorMessage } from '../../selectors';
 import * as actions from '../../redux/actions';
 import {
   Products,
@@ -16,7 +17,25 @@ import flat1 from '../../images/apartment-1.jpg';
 
 class Product extends Component {
   componentDidMount() {
-    this.props.fetchApartments();
+    const { fetchApartments } = this.props;
+    fetchApartments();
+  }
+
+  renderItem() {
+    const { apartments } = this.props;
+    return apartments.map(apartment => (
+      <ProductItem key={apartment.id}>
+        <ImageContainer>
+          <ProductImage src={flat1} alt="apartment1" />
+          <BagBtn>
+            <FontAwesomeIcon icon="shopping-cart" />
+            add to bag
+          </BagBtn>
+        </ImageContainer>
+        <h3>{apartment.title}</h3>
+        <h4>{apartment.price}</h4>
+      </ProductItem>
+    ));
   }
 
   render() {
@@ -25,25 +44,19 @@ class Product extends Component {
         <SectionTitle>
           <h2>our products</h2>
         </SectionTitle>
-        <ProductsCenter>
-          <ProductItem>
-            <ImageContainer>
-              <ProductImage src={flat1} alt="apartment1" />
-              <BagBtn>
-                <FontAwesomeIcon icon="shopping-cart" />
-                add to bag
-              </BagBtn>
-            </ImageContainer>
-            <h3>queen bed</h3>
-            <h4>$15</h4>
-          </ProductItem>
-        </ProductsCenter>
+        <ProductsCenter>{this.renderItem()}</ProductsCenter>
       </Products>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  apartments: getApartments(state),
+  isFetching: getIsFetching(state),
+  errorMessage: getErrorMessage(state),
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   actions,
 )(Product);
