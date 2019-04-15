@@ -25,8 +25,12 @@ class Product extends Component {
     fetchApartments();
   }
 
-  onClick = (id) => {
-    console.log('item', id);
+  onClick = (e, id) => {
+    const { addItemToCart } = this.props;
+
+    e.target.textContent = 'in cart';
+    e.target.disabled = true;
+    addItemToCart(id);
   };
 
   renderItem() {
@@ -35,7 +39,7 @@ class Product extends Component {
       <ProductItem key={id}>
         <ImageContainer>
           <ProductImage src={flat1} alt="apartment1" />
-          <BagBtn onClick={() => this.onClick(id)}>
+          <BagBtn onClick={e => this.onClick(e, id)}>
             <FontAwesomeIcon icon="shopping-cart" />
             add to bag
           </BagBtn>
