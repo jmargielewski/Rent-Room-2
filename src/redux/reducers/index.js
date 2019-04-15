@@ -3,8 +3,8 @@ import apartmentsReducer from './apartmentsReducer';
 import cartReducer from './cartReducer';
 
 const reducer = combineReducers({
-  apartmentsReducer,
-  cartReducer,
+  apartmentsData: apartmentsReducer,
+  cart: cartReducer,
 });
 
 export default reducer;

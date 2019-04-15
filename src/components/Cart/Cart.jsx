@@ -1,11 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getApartmentsInCartSelector } from '../../redux/selectors';
 
 import flat1 from '../../images/apartment-1s.jpg';
 import Button from '../Button/Button';
 import {
   CartOverlay,
-  Cart,
+  CartWrap,
   CloseCart,
   CartContent,
   CartItem,
@@ -14,27 +16,30 @@ import {
   CartFooter,
 } from './CartStyle';
 
-export default () => (
+const Cart = ({ cartItems }) => (
   <CartOverlay>
-    <Cart>
+    {console.log(cartItems)}
+    <CartWrap>
       <CloseCart>
         <FontAwesomeIcon icon="window-close" />
       </CloseCart>
       <h2>your cart</h2>
       <CartContent>
-        <CartItem>
-          <img src={flat1} alt="product" />
-          <div>
-            <h4>queen bed</h4>
-            <h5>$9.00</h5>
-            <RemoveItem>remove</RemoveItem>
-          </div>
-          <div>
-            <FontAwesomeIcon icon="chevron-up" />
-            <ItemAmount>1</ItemAmount>
-            <FontAwesomeIcon icon="chevron-down" />
-          </div>
-        </CartItem>
+        {cartItems.map(cartItem => (
+          <CartItem key={cartItem.id}>
+            <img src={flat1} alt="product" />
+            <div>
+              <h4>{cartItem.title}</h4>
+              <h5>{cartItem.price}</h5>
+              <RemoveItem>remove</RemoveItem>
+            </div>
+            <div>
+              <FontAwesomeIcon icon="chevron-up" />
+              <ItemAmount>1</ItemAmount>
+              <FontAwesomeIcon icon="chevron-down" />
+            </div>
+          </CartItem>
+        ))}
       </CartContent>
       <CartFooter>
         <h3>
@@ -43,6 +48,12 @@ export default () => (
         </h3>
         <Button className="clear-cart">clear cart</Button>
       </CartFooter>
-    </Cart>
+    </CartWrap>
   </CartOverlay>
 );
+
+const mapStateToProps = state => ({
+  cartItems: getApartmentsInCartSelector(state),
+});
+
+export default connect(mapStateToProps)(Cart);

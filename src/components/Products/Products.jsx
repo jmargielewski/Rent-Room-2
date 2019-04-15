@@ -62,10 +62,10 @@ class Product extends Component {
   }
 }
 
-const mapStateToProps = ({ apartmentsReducer }) => ({
-  apartments: getApartments(apartmentsReducer),
-  isFetching: getIsFetching(apartmentsReducer),
-  errorMessage: getErrorMessage(apartmentsReducer),
+const mapStateToProps = state => ({
+  apartments: getApartments(state),
+  isFetching: getIsFetching(state),
+  errorMessage: getErrorMessage(state),
 });
 
 export default connect(

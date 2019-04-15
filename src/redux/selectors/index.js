@@ -1,10 +1,20 @@
-import * as fromApartments from '../reducers/apartmentsReducer';
+import { createSelector } from 'reselect';
+
+export const getIds = state => state.apartmentsData.apartments.allIds;
+export const getApartment = (state, id) => state.apartmentsData.apartments.byId[id];
 
 export const getApartments = (state) => {
-  const ids = fromApartments.getIds(state);
-  return ids.map(id => fromApartments.getApartment(state, id));
+  const ids = getIds(state);
+  return ids.map(id => getApartment(state, id));
 };
 
-export const getIsFetching = state => fromApartments.getIsFetching(state);
+export const getIsFetching = state => state.apartmentsData.isFetching;
+export const getErrorMessage = state => state.apartmentsData.errorMessage;
 
-export const getErrorMessage = state => fromApartments.getErrorMessage(state);
+export const getCartItemsIds = state => state.cart.cartItemsIds;
+
+export const getApartmentsInCartSelector = createSelector(
+  getApartments,
+  getCartItemsIds,
+  (apartments, ids) => ids.map(id => apartments.filter(apart => apart.id === id)),
+);

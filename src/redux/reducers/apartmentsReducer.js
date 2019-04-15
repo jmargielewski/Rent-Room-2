@@ -27,8 +27,3 @@ const apartmentsReducer = (state = INITIAL_STATE, action) => {
 };
 
 export default apartmentsReducer;
-
-export const getIds = state => state.apartments.allIds;
-export const getApartment = (state, id) => state.apartments.byId[id];
-export const getIsFetching = state => state.isFetching;
-export const getErrorMessage = state => state.errorMessage;

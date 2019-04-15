@@ -15,7 +15,7 @@ const CartOverlay = styled.div`
   }
 `;
 
-const Cart = styled.div`
+const CartWrap = styled.div`
   position: fixed;
   top: 0;
   right: 0;
@@ -96,7 +96,7 @@ const CartFooter = styled.div`
 
 export {
   CartOverlay,
-  Cart,
+  CartWrap,
   CloseCart,
   CartContent,
   CartItem,
