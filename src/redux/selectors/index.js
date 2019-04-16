@@ -16,5 +16,5 @@ export const getCartItemsIds = state => state.cart.cartItemsIds;
 export const getApartmentsInCartSelector = createSelector(
   getApartments,
   getCartItemsIds,
-  (apartments, ids) => ids.map(id => apartments.filter(apart => apart.id === id)),
+  (apartments, ids) => apartments.filter(apartment => ids.includes(apartment.id)),
 );
