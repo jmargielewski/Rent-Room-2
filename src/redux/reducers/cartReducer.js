@@ -1,7 +1,7 @@
 import { ADD_ITEM_TO_CARD } from '../actions/types';
 
 export const INITIAL_STATE = {
-  cartItemsIds: [],
+  cartItems: [],
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -9,7 +9,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case ADD_ITEM_TO_CARD:
       return {
         ...state,
-        cartItemsIds: [...state.cartItemsIds, action.payload],
+        cartItems: [...state.cartItems, { id: action.payload, amount: 0 }],
       };
     default:
       return state;
