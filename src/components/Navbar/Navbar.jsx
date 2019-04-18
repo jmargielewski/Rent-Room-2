@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as actions from '../../redux/actions';
+import { getCartItemsIds } from '../../redux/selectors';
 import {
   Navbar,
   NavbarCenter,
@@ -13,7 +14,7 @@ import {
 
 import logo from '../../assets/logo.png';
 
-const Nav = ({ toggleCart }) => (
+const Nav = ({ toggleCart, numberItems }) => (
   <Navbar>
     <NavbarCenter>
       <NavbarIcon>
@@ -24,13 +25,17 @@ const Nav = ({ toggleCart }) => (
         <NavbarIcon onClick={toggleCart}>
           <FontAwesomeIcon icon="shopping-cart" />
         </NavbarIcon>
-        <CartItems>1</CartItems>
+        <CartItems>{numberItems}</CartItems>
       </CartBtn>
     </NavbarCenter>
   </Navbar>
 );
 
+const mapStateToProps = state => ({
+  numberItems: getCartItemsIds(state).length,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   actions,
 )(Nav);
