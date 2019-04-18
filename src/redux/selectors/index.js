@@ -11,10 +11,10 @@ export const getApartments = (state) => {
 export const getIsFetching = state => state.apartmentsData.isFetching;
 export const getErrorMessage = state => state.apartmentsData.errorMessage;
 
-export const getCartItems = state => state.cart.cartItems;
+export const getCartItemsIds = state => state.cart.cartItemsIds;
 
 export const getApartmentsInCartSelector = createSelector(
   getApartments,
-  getCartItems,
-  (apartments, cartItems) => apartments.filter(apartment => cartItems.some(cartItem => cartItem.id === apartment.id),),
+  getCartItemsIds,
+  (apartments, cartItemsIds) => apartments.filter(apartment => cartItemsIds.includes(apartment.id)),
 );
