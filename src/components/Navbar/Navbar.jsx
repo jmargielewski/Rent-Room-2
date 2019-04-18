@@ -21,7 +21,7 @@ const Nav = ({ toggleCart }) => (
       </NavbarIcon>
       <Logo src={logo} />
       <CartBtn>
-        <NavbarIcon onClick={() => toggleCart()}>
+        <NavbarIcon onClick={toggleCart}>
           <FontAwesomeIcon icon="shopping-cart" />
         </NavbarIcon>
         <CartItems>1</CartItems>

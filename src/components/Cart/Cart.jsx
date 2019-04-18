@@ -17,10 +17,12 @@ import {
   CartFooter,
 } from './CartStyle';
 
-const Cart = ({ cartItems, isOpen, toggleCart }) => (
+const Cart = ({
+ cartItems, isOpen, toggleCart, removeAllItemsInCart 
+}) => (
   <CartOverlay style={{ visibility: `${isOpen ? 'visible' : 'hidden'}` }}>
     <CartWrap style={{ transform: `translateX(${isOpen ? '0%' : '100%'})` }}>
-      <CloseCart onClick={() => toggleCart()}>
+      <CloseCart onClick={toggleCart}>
         <FontAwesomeIcon icon="window-close" />
       </CloseCart>
       <h2>your cart</h2>
@@ -47,7 +49,9 @@ const Cart = ({ cartItems, isOpen, toggleCart }) => (
           <span>your total : $</span>
           <span className="cart-total">0</span>
         </h3>
-        <Button className="clear-cart">clear cart</Button>
+        <Button onClick={removeAllItemsInCart} className="clear-cart">
+          clear cart
+        </Button>
       </CartFooter>
     </CartWrap>
   </CartOverlay>
