@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as actions from '../../redux/actions';
 import {
   Navbar,
   NavbarCenter,
@@ -11,7 +13,7 @@ import {
 
 import logo from '../../assets/logo.png';
 
-export default () => (
+const Nav = ({ toggleCart }) => (
   <Navbar>
     <NavbarCenter>
       <NavbarIcon>
@@ -19,7 +21,7 @@ export default () => (
       </NavbarIcon>
       <Logo src={logo} />
       <CartBtn>
-        <NavbarIcon>
+        <NavbarIcon onClick={() => toggleCart()}>
           <FontAwesomeIcon icon="shopping-cart" />
         </NavbarIcon>
         <CartItems>1</CartItems>
@@ -27,3 +29,8 @@ export default () => (
     </NavbarCenter>
   </Navbar>
 );
+
+export default connect(
+  null,
+  actions,
+)(Nav);

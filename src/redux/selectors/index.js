@@ -11,7 +11,9 @@ export const getApartments = (state) => {
 export const getIsFetching = state => state.apartmentsData.isFetching;
 export const getErrorMessage = state => state.apartmentsData.errorMessage;
 
+// cart
 export const getCartItemsIds = state => state.cart.cartItemsIds;
+export const getIsOpen = state => state.cart.isOpen;
 
 export const getApartmentsInCartSelector = createSelector(
   getApartments,

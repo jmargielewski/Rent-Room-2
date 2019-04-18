@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getApartmentsInCartSelector } from '../../redux/selectors';
+import * as actions from '../../redux/actions';
+import { getApartmentsInCartSelector, getIsOpen } from '../../redux/selectors';
 
 import flat1 from '../../images/apartment-1s.jpg';
 import Button from '../Button/Button';
@@ -16,10 +17,10 @@ import {
   CartFooter,
 } from './CartStyle';
 
-const Cart = ({ cartItems }) => (
-  <CartOverlay>
-    <CartWrap>
-      <CloseCart>
+const Cart = ({ cartItems, isOpen, toggleCart }) => (
+  <CartOverlay style={{ visibility: `${isOpen ? 'visible' : 'hidden'}` }}>
+    <CartWrap style={{ transform: `translateX(${isOpen ? '0%' : '100%'})` }}>
+      <CloseCart onClick={() => toggleCart()}>
         <FontAwesomeIcon icon="window-close" />
       </CloseCart>
       <h2>your cart</h2>
@@ -54,6 +55,10 @@ const Cart = ({ cartItems }) => (
 
 const mapStateToProps = state => ({
   cartItems: getApartmentsInCartSelector(state),
+  isOpen: getIsOpen(state),
 });
 
-export default connect(mapStateToProps)(Cart);
+export default connect(
+  mapStateToProps,
+  actions,
+)(Cart);
