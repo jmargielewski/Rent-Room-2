@@ -5,6 +5,7 @@ import {
   getApartments,
   getIsFetching,
   getErrorMessage,
+  getCartItemsIds,
 } from '../../redux/selectors';
 import * as actions from '../../redux/actions';
 import {
@@ -25,13 +26,23 @@ class Product extends Component {
     fetchApartments();
   }
 
-  onClick = (e, id) => {
-    const { addItemToCart } = this.props;
-
-    e.target.textContent = 'in cart';
-    e.target.disabled = true;
-    addItemToCart(id);
-  };
+  renderItemButton(id) {
+    const { cartItemsIds, addItemToCart } = this.props;
+    if (cartItemsIds.includes(id)) {
+      return (
+        <BagBtn disabled>
+          <FontAwesomeIcon icon="shopping-cart" />
+          in cart
+        </BagBtn>
+      );
+    }
+    return (
+      <BagBtn onClick={() => addItemToCart(id)}>
+        <FontAwesomeIcon icon="shopping-cart" />
+        add to bag
+      </BagBtn>
+    );
+  }
 
   renderItem() {
     const { apartments } = this.props;
@@ -39,10 +50,7 @@ class Product extends Component {
       <ProductItem key={id}>
         <ImageContainer>
           <ProductImage src={flat1} alt="apartment1" />
-          <BagBtn onClick={e => this.onClick(e, id)}>
-            <FontAwesomeIcon icon="shopping-cart" />
-            add to bag
-          </BagBtn>
+          {this.renderItemButton(id)}
         </ImageContainer>
         <h3>{title}</h3>
         <h4>{price}</h4>
@@ -66,6 +74,7 @@ const mapStateToProps = state => ({
   apartments: getApartments(state),
   isFetching: getIsFetching(state),
   errorMessage: getErrorMessage(state),
+  cartItemsIds: getCartItemsIds(state),
 });
 
 export default connect(
