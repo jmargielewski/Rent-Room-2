@@ -18,7 +18,11 @@ import {
 } from './CartStyle';
 
 const Cart = ({
- cartItems, isOpen, toggleCart, removeAllItemsInCart 
+  cartItems,
+  isOpen,
+  toggleCart,
+  removeAllItemsInCart,
+  removeItemInCart,
 }) => (
   <CartOverlay style={{ visibility: `${isOpen ? 'visible' : 'hidden'}` }}>
     <CartWrap style={{ transform: `translateX(${isOpen ? '0%' : '100%'})` }}>
@@ -34,7 +38,9 @@ const Cart = ({
               <div>
                 <h4>{cartItem.title}</h4>
                 <h5>{cartItem.price}</h5>
-                <RemoveItem>remove</RemoveItem>
+                <RemoveItem onClick={() => removeItemInCart(cartItem.id)}>
+                  remove
+                </RemoveItem>
               </div>
               <div>
                 <FontAwesomeIcon icon="chevron-up" />
