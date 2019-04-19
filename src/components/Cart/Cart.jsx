@@ -44,7 +44,7 @@ const Cart = ({
               </div>
               <div>
                 <FontAwesomeIcon icon="chevron-up" />
-                <ItemAmount>1</ItemAmount>
+                <ItemAmount>{cartItem.amount}</ItemAmount>
                 <FontAwesomeIcon icon="chevron-down" />
               </div>
             </CartItem>

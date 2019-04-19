@@ -5,7 +5,7 @@ import {
   getApartments,
   getIsFetching,
   getErrorMessage,
-  getCartItemsIds,
+  getCartItems,
 } from '../../redux/selectors';
 import * as actions from '../../redux/actions';
 import {
@@ -27,8 +27,8 @@ class Product extends Component {
   }
 
   renderItemButton(id) {
-    const { cartItemsIds, addItemToCart } = this.props;
-    if (cartItemsIds.includes(id)) {
+    const { cartItems, addItemToCart } = this.props;
+    if (cartItems[id]) {
       return (
         <BagBtn disabled>
           <FontAwesomeIcon icon="shopping-cart" />
@@ -74,7 +74,7 @@ const mapStateToProps = state => ({
   apartments: getApartments(state),
   isFetching: getIsFetching(state),
   errorMessage: getErrorMessage(state),
-  cartItemsIds: getCartItemsIds(state),
+  cartItems: getCartItems(state),
 });
 
 export default connect(

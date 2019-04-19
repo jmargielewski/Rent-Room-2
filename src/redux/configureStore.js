@@ -16,7 +16,7 @@ const configureStore = () => {
 
   store.subscribe(() => {
     saveCartState({
-      cart: { cartItemsIds: store.getState().cart.cartItemsIds },
+      cart: { cartItems: store.getState().cart.cartItems },
     });
   });
 

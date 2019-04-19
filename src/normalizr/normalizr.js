@@ -20,7 +20,6 @@ export const formateApartmentsEntity = ({ items }) => {
       price,
       id,
       image: url,
-      amount: 0,
     };
     allIds.push(id);
   });

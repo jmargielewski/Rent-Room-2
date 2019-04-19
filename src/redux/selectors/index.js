@@ -12,11 +12,22 @@ export const getIsFetching = state => state.apartmentsData.isFetching;
 export const getErrorMessage = state => state.apartmentsData.errorMessage;
 
 // cart
-export const getCartItemsIds = state => state.cart.cartItemsIds;
+export const getCartItems = state => state.cart.cartItems;
 export const getIsOpen = state => state.cart.isOpen;
 
 export const getApartmentsInCartSelector = createSelector(
   getApartments,
-  getCartItemsIds,
-  (apartments, cartItemsIds) => apartments.filter(apartment => cartItemsIds.includes(apartment.id)),
+  getCartItems,
+  (apartments, cartItems) => apartments.reduce(
+      (acc, apartment) => (cartItems[apartment.id]
+          ? [
+              ...acc,
+              {
+                ...apartment,
+                amount: cartItems[apartment.id].amount,
+              },
+            ]
+          : acc),
+      [],
+    ),
 );

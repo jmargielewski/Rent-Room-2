@@ -6,7 +6,7 @@ import {
 } from '../actions/types';
 
 export const INITIAL_STATE = {
-  cartItemsIds: [],
+  cartItems: {},
   isOpen: false,
 };
 
@@ -20,17 +20,27 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case ADD_ITEM_TO_CARD:
       return {
         ...state,
-        cartItemsIds: [...state.cartItemsIds, action.payload],
+        cartItems: {
+          ...state.cartItems,
+          [action.payload]: { id: action.payload, amount: 1 },
+        },
       };
     case REMOVE_ITEM_IN_CART:
       return {
         ...state,
-        cartItemsIds: state.cartItemsIds.filter(id => id !== action.payload),
+        cartItems: {
+          ...Object.keys(state.cartItems).reduce(
+            (acc, id) => (id === action.payload
+                ? acc
+                : { ...acc, [id]: state.cartItems[id] }),
+            {},
+          ),
+        },
       };
     case REMOVE_ALL_ITEMS_IN_CART:
       return {
         ...state,
-        cartItemsIds: [],
+        cartItems: {},
       };
     default:
       return state;
