@@ -1,6 +1,8 @@
 import {
   TOGGLE_CART,
   ADD_ITEM_TO_CARD,
+  INCREMENT_ITEM,
+  DECREMENT_ITEM,
   REMOVE_ITEM_IN_CART,
   REMOVE_ALL_ITEMS_IN_CART,
 } from '../actions/types';
@@ -23,6 +25,28 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         cartItems: {
           ...state.cartItems,
           [action.payload]: { id: action.payload, amount: 1 },
+        },
+      };
+    case INCREMENT_ITEM:
+      return {
+        ...state,
+        cartItems: {
+          ...state.cartItems,
+          [action.payload]: {
+            ...state.cartItems[action.payload],
+            amount: state.cartItems[action.payload].amount + 1,
+          },
+        },
+      };
+    case DECREMENT_ITEM:
+      return {
+        ...state,
+        cartItems: {
+          ...state.cartItems,
+          [action.payload]: {
+            ...state.cartItems[action.payload],
+            amount: state.cartItems[action.payload].amount - 1,
+          },
         },
       };
     case REMOVE_ITEM_IN_CART:

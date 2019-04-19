@@ -21,6 +21,8 @@ const Cart = ({
   cartItems,
   isOpen,
   toggleCart,
+  incrementItem,
+  decrementItem,
   removeAllItemsInCart,
   removeItemInCart,
 }) => (
@@ -43,9 +45,18 @@ const Cart = ({
                 </RemoveItem>
               </div>
               <div>
-                <FontAwesomeIcon icon="chevron-up" />
+                <FontAwesomeIcon
+                  onClick={() => incrementItem(cartItem.id)}
+                  icon="chevron-up"
+                />
                 <ItemAmount>{cartItem.amount}</ItemAmount>
-                <FontAwesomeIcon icon="chevron-down" />
+                <FontAwesomeIcon
+                  onClick={() => (cartItem.amount === 1
+                      ? removeItemInCart(cartItem.id)
+                      : decrementItem(cartItem.id))
+                  }
+                  icon="chevron-down"
+                />
               </div>
             </CartItem>
           ))}
