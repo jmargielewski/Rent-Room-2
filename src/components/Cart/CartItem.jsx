@@ -2,8 +2,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { CartItem, RemoveItem, ItemAmount } from './CartStyle';
 
-import flat1 from '../../images/apartment-1s.jpg';
-
 export default ({
   cartItem,
   removeItemInCart,
@@ -11,7 +9,7 @@ export default ({
   decrementItem,
 }) => (
   <CartItem key={cartItem.id}>
-    <img src={flat1} alt="product" />
+    <img src={cartItem.image} alt="product" />
     <div>
       <h4>{cartItem.title}</h4>
       <h5>{cartItem.price}</h5>

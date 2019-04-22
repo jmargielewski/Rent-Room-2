@@ -44,6 +44,7 @@ const ProductImage = styled.img`
   display: block;
   width: 100%;
   min-height: 12rem;
+  max-height: 12rem;
   transition: var(--mainTransition);
 `;
 

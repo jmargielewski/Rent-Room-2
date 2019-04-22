@@ -18,8 +18,6 @@ import {
   ImageContainer,
 } from './ProductsStyles';
 
-import flat1 from '../../images/apartment-1.jpg';
-
 class Product extends Component {
   componentDidMount() {
     const { fetchApartments } = this.props;
@@ -46,10 +44,12 @@ class Product extends Component {
 
   renderItem() {
     const { apartments } = this.props;
-    return apartments.map(({ id, title, price }) => (
+    return apartments.map(({
+ id, title, price, image 
+}) => (
       <ProductItem key={id}>
         <ImageContainer>
-          <ProductImage src={flat1} alt="apartment1" />
+          <ProductImage src={image} alt="apartment1" />
           {this.renderItemButton(id)}
         </ImageContainer>
         <h3>{title}</h3>

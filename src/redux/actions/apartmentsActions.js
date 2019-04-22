@@ -3,8 +3,15 @@ import {
   FETCH_APARTMENTS_SUCCESS,
   FETCH_APARTMENTS_FAILURE,
 } from './types';
-import api from '../../api/api';
 import { formateApartmentsEntity } from '../../normalizr/normalizr';
+import { contentfulSpace, contentfulAccessToken } from '../../config/keys';
+
+const contentful = require('contentful');
+
+const client = contentful.createClient({
+  space: contentfulSpace,
+  accessToken: contentfulAccessToken,
+});
 
 const fetchApartmentsSuccess = response => ({
   type: FETCH_APARTMENTS_SUCCESS,
@@ -19,12 +26,10 @@ const fetchApartmentsFailure = err => ({
 export const fetchApartments = data => async (dispatch) => {
   dispatch({ type: FETCH_APARTMENTS_REQUEST });
   try {
-    const response = await api.get('db.json');
-    if (response.status === 200) {
-      dispatch(fetchApartmentsSuccess(response.data));
-    } else {
-      console.error('ERROR', response.status);
-    }
+    const result = await client.getEntries({
+      content_type: 'rentRoom',
+    });
+    dispatch(fetchApartmentsSuccess(result));
   } catch (err) {
     dispatch(fetchApartmentsFailure(err));
   }

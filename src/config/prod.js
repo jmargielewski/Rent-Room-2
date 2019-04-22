@@ -1,0 +1,4 @@
+module.exports = {
+  contentfulSpace: '',
+  contentfulAccessToken: '',
+};
