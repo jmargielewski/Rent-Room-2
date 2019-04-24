@@ -9,8 +9,8 @@ import { contentfulSpace, contentfulAccessToken } from '../../config/keys';
 const contentful = require('contentful');
 
 const client = contentful.createClient({
-  space: contentfulSpace,
-  accessToken: contentfulAccessToken,
+  space: process.env.CONTENTFUL_SPACE,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 });
 
 const fetchApartmentsSuccess = response => ({
