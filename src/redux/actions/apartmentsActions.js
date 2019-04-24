@@ -4,13 +4,12 @@ import {
   FETCH_APARTMENTS_FAILURE,
 } from './types';
 import { formateApartmentsEntity } from '../../normalizr/normalizr';
-import { contentfulSpace, contentfulAccessToken } from '../../config/keys';
 
 const contentful = require('contentful');
 
 const client = contentful.createClient({
-  space: process.env.CONTENTFUL_SPACE,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  space: process.env.REACT_APP_CONTENTFUL_SPACE,
+  accessToken: process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN,
 });
 
 const fetchApartmentsSuccess = response => ({
