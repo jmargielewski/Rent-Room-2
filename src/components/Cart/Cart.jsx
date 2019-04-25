@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as actions from '../../redux/actions';
-import { formatter } from '../helper/priceFormatter';
+import { formatter } from '../../helper/priceFormatter';
 import {
   getApartmentsInCartSelector,
   getTotalCartSelector,

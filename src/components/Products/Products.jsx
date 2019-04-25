@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { formatter } from '../../helper/priceFormatter';
 import {
   getApartments,
   getIsFetching,
@@ -17,7 +18,6 @@ import {
   BagBtn,
   ImageContainer,
 } from './ProductsStyles';
-import { formatter } from '../helper/priceFormatter';
 
 class Product extends Component {
   componentDidMount() {
