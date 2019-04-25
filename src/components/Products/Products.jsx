@@ -38,7 +38,7 @@ class Product extends Component {
     return (
       <BagBtn onClick={() => addItemToCart(id)}>
         <FontAwesomeIcon icon="shopping-cart" />
-        add to bag
+        add to cart
       </BagBtn>
     );
   }

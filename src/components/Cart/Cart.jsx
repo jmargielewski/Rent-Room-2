@@ -5,6 +5,7 @@ import * as actions from '../../redux/actions';
 import { formatter } from '../../helper/priceFormatter';
 import {
   getApartmentsInCartSelector,
+  getTotalCartPrice,
   getTotalCartSelector,
   getIsOpen,
 } from '../../redux/selectors';
@@ -21,6 +22,7 @@ import {
 
 const Cart = ({
   cartItems,
+  totalPrice,
   totalAmount,
   isOpen,
   toggleCart,
@@ -45,7 +47,7 @@ const Cart = ({
       <h3>
         <div>
           <span>your total price :</span>
-          <span>{formatter.format(0)}</span>
+          <span>{formatter.format(totalPrice)}</span>
         </div>
         <div className="cart-total">
           <span>your total amount : </span>
@@ -74,6 +76,7 @@ const Cart = ({
 
 const mapStateToProps = state => ({
   cartItems: getApartmentsInCartSelector(state),
+  totalPrice: getTotalCartPrice(state),
   totalAmount: getTotalCartSelector(state),
   isOpen: getIsOpen(state),
 });

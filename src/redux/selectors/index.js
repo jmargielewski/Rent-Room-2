@@ -32,10 +32,18 @@ export const getApartmentsInCartSelector = createSelector(
     ),
 );
 
+export const getTotalCartPrice = createSelector(
+  getApartmentsInCartSelector,
+  cartItems => cartItems.reduce(
+      (acc, cartItem) => acc + cartItem.amount * cartItem.price,
+      0,
+    ),
+);
+
 export const getTotalCartSelector = createSelector(
   getCartItems,
   cartItems => Object.keys(cartItems).reduce(
-      (acc, cartItemId) => (acc += cartItems[cartItemId].amount),
+      (acc, cartItemId) => acc + cartItems[cartItemId].amount,
       0,
     ),
 );
