@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as actions from '../../redux/actions';
-import { getCartItems } from '../../redux/selectors';
+import { getTotalCartSelector } from '../../redux/selectors';
 import {
   Navbar,
   NavbarCenter,
@@ -32,7 +32,7 @@ const Nav = ({ toggleCart, numberItems }) => (
 );
 
 const mapStateToProps = state => ({
-  numberItems: Object.keys(getCartItems(state)).length,
+  numberItems: getTotalCartSelector(state),
 });
 
 export default connect(
