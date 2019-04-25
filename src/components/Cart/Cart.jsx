@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as actions from '../../redux/actions';
+import { formatter } from '../helper/priceFormatter';
 import {
   getApartmentsInCartSelector,
   getTotalCartSelector,
@@ -42,9 +43,12 @@ const Cart = ({
   const renderCartFooter = () => (
     <>
       <h3>
-        <div>your total price : $</div>
+        <div>
+          <span>your total price :</span>
+          <span>{formatter.format(0)}</span>
+        </div>
         <div className="cart-total">
-          <span>your total amount :</span>
+          <span>your total amount : </span>
           <span>{totalAmount || 0}</span>
         </div>
       </h3>

@@ -22,7 +22,7 @@ const fetchApartmentsFailure = err => ({
   payload: err,
 });
 
-export const fetchApartments = data => async (dispatch) => {
+export const fetchApartments = () => async (dispatch) => {
   dispatch({ type: FETCH_APARTMENTS_REQUEST });
   try {
     const result = await client.getEntries({

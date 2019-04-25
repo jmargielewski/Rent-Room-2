@@ -17,6 +17,7 @@ import {
   BagBtn,
   ImageContainer,
 } from './ProductsStyles';
+import { formatter } from '../helper/priceFormatter';
 
 class Product extends Component {
   componentDidMount() {
@@ -53,7 +54,7 @@ class Product extends Component {
           {this.renderItemButton(id)}
         </ImageContainer>
         <h3>{title}</h3>
-        <h4>{price}</h4>
+        <h4>{formatter.format(price)}</h4>
       </ProductItem>
     ));
   }
