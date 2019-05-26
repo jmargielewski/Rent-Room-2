@@ -11,3 +11,4 @@ Rent Room 2.0
 - Reselect
 - Styled Components
 - Contentful
+- Hosting- Heroku
